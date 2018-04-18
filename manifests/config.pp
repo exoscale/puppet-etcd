@@ -1,19 +1,17 @@
 # == Class: etcd::config
 #
 class etcd::config {
-  if $::osfamily == 'Ubuntu' {
-    file { '/etc/etcd':
-      ensure => 'directory',
-      owner  => 'etcd',
-      group  => 'etcd',
-      mode   => '0755',
-    }
+
+  file { '/etc/etcd':
+    ensure => 'directory',
+    owner  => 'etcd',
+    group  => 'etcd',
+    mode   => '0755',
   }->
   file { $::etcd::config_file_path:
     ensure  => 'file',
     content => template("${module_name}/etc/etcd/etcd.conf.erb"),
   }->
-
   file { $::etcd::config_yaml_path:
     ensure  => 'file',
     owner   => 'etcd',
