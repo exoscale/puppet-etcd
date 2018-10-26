@@ -90,6 +90,7 @@ strict-reconfig-check: <%= scope['etcd::strict_reconfig_check'] %>
 <%# Add support for etcd > v3.3 : Changed value type of etcd --auto-compaction-retention flag to string  -%>
 <% if scope['etcd::auto_compaction_retention'].is_a? String  -%>
 auto-compaction-retention: "<%= scope['etcd::auto_compaction_retention'] %>"
+auto-compaction-mode: <%= scope['etcd::auto_compaction_mode'] %>
 <% else -%>
 auto-compaction-retention: <%= scope['etcd::auto_compaction_retention'] %>
 <% end -%>

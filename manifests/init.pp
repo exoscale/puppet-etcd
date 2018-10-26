@@ -149,8 +149,16 @@
 #   default: false
 #
 # [*auto_compaction_retention*]
-#   Auto compaction retention for mvcc key value store in hour. 0 means disable auto compaction. Defaults to 0
+#   <3.3: Auto compaction retention for mvcc key value store in hour. 0 means disable auto compaction. Defaults to 0
+#   >=3.3: Auto compaction retention length in time unit or revision. 0 means disable auto compaction.
 #   default: undef
+#
+# [*auto_compaction_mode*]
+#   From etcd version 3.3
+#   Interpret 'auto-compaction-retention' one of: periodic|revision.
+#  'periodic' for duration based retention, defaulting to hours if no time unit is provided (e.g. '5m').
+#  'revision' for revision number based retention.
+#   default: periodic
 #
 # proxy
 # [*proxy*]
@@ -266,6 +274,7 @@ class etcd (
   $discovery_proxy             = $etcd::params::discovery_proxy,
   $strict_reconfig_check       = $etcd::params::strict_reconfig_check,
   $auto_compaction_retention   = $etcd::params::auto_compaction_retention,
+  $auto_compaction_mode        = $etcd::params::auto_compaction_mode,
   # proxy
   $proxy                       = $etcd::params::proxy,
   $proxy_failure_wait          = $etcd::params::proxy_failure_wait,
@@ -322,6 +331,8 @@ class etcd (
       $real_proxy = 'on'
     }
   }
+
+  validate_re($auto_compaction_mode, '^(periodic|revision)$')
 
   contain '::etcd::install'
   contain '::etcd::config'

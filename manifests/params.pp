@@ -55,6 +55,7 @@ class etcd::params {
   $discovery_proxy = undef
   $strict_reconfig_check = false
   $auto_compaction_retention = undef
+  $auto_compaction_mode = 'periodic'
 
   # proxy
   $proxy = undef
