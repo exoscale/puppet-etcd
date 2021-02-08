@@ -239,6 +239,11 @@
 # [*journald_forward_enable*]
 #   Enable log forwarding via journald_forward_enable
 #
+# [*logger*]
+#   From etcd version 3.4
+#   'zap' for structured logging or ‘capnslog’.
+#   'capnslog' deprecated in v3.5
+#
 class etcd (
   $ensure                      = $etcd::params::ensure,
   $package_name                = $etcd::params::package_name,
@@ -296,7 +301,8 @@ class etcd (
   # logging
   $debug                       = $etcd::params::debug,
   $log_package_levels          = $etcd::params::log_package_levels,
-  $journald_forward_enable     = $etcd::params::journald_forward_enable
+  $journald_forward_enable     = $etcd::params::journald_forward_enable,
+  $logger                      = $etcd::params::logger
 ) inherits etcd::params {
   validate_integer($snapshot_count)
   validate_integer($heartbeat_interval)
