@@ -93,6 +93,7 @@ auto-compaction-retention: "<%= scope['etcd::auto_compaction_retention'] %>"
 auto-compaction-mode: <%= scope['etcd::auto_compaction_mode'] %>
 <% else -%>
 auto-compaction-retention: <%= scope['etcd::auto_compaction_retention'] %>
+auto-compaction-mode: <%= scope['etcd::auto_compaction_mode'] %>
 <% end -%>
 
 # Force to create a new one member cluster.
