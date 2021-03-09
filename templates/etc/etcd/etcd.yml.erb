@@ -185,3 +185,6 @@ log-package-levels: "<%= scope['etcd::log_package_levels'] %>"
 <% if scope['etcd::logger'].is_a? String  -%>
 logger: <%= scope['etcd::logger'] %>
 <% end -%>
+
+# specify detail of exposed metrics
+metrics: "<%= scope['etcd::metrics'] %>"
