@@ -302,7 +302,9 @@ class etcd (
   $debug                       = $etcd::params::debug,
   $log_package_levels          = $etcd::params::log_package_levels,
   $journald_forward_enable     = $etcd::params::journald_forward_enable,
-  $logger                      = $etcd::params::logger
+  $logger                      = $etcd::params::logger,
+  # metrics
+  $metrics                     = $etcd::params::metrics
 ) inherits etcd::params {
   validate_integer($snapshot_count)
   validate_integer($heartbeat_interval)
