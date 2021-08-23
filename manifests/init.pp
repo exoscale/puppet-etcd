@@ -250,6 +250,7 @@ class etcd (
   $manage_package              = $etcd::params::manage_package,
   $manage_service              = $etcd::params::manage_service,
   $config_file_path            = $etcd::params::config_file_path,
+  $cli_config_file_path        = $etcd::params::cli_config_file_path,
   $service_ensure              = $etcd::params::service_ensure,
   $service_enable              = $etcd::params::service_enable,
   # member

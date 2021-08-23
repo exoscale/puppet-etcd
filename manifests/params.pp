@@ -11,16 +11,34 @@ class etcd::params {
   case $::osfamily {
     'RedHat' : {
       case $::operatingsystemmajrelease {
-        '6'     : { $config_file_path = '/etc/sysconfig/etcd' }
-        '7'     : { $config_file_path = '/etc/etcd/etcd.conf' }
-        '24'    : { $config_file_path = '/etc/etcd/etcd.conf' }
-        '25'    : { $config_file_path = '/etc/etcd/etcd.conf' }
-        '26'    : { $config_file_path = '/etc/etcd/etcd.conf' }
-        default : { fail('Unsupported RedHat release.') }
+        '6' : {
+          $config_file_path     = '/etc/sysconfig/etcd'
+          $cli_config_file_path = '/etc/etcd/etcdctl.conf'
+        }
+        '7' : {
+          $config_file_path     = '/etc/etcd/etcd.conf'
+          $cli_config_file_path = '/etc/etcd/etcdctl.conf'
+        }
+        '24' : {
+          $config_file_path     = '/etc/etcd/etcd.conf'
+          $cli_config_file_path = '/etc/etcd/etcdctl.conf'
+        }
+        '25' : {
+          $config_file_path     = '/etc/etcd/etcd.conf'
+          $cli_config_file_path = '/etc/etcd/etcdctl.conf'
+        }
+        '26' : {
+          $config_file_path     = '/etc/etcd/etcd.conf'
+          $cli_config_file_path = '/etc/etcd/etcdctl.conf'
+        }
+        default : {
+          fail('Unsupported RedHat release.')
+        }
       }
     }
     'Debian' : {
-      $config_file_path = '/etc/default/etcd'
+      $config_file_path     = '/etc/default/etcd'
+      $cli_config_file_path = '/etc/default/etcdctl'
     }
     default  : {
       fail('Unsupported OS.')
