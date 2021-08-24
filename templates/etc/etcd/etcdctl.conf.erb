@@ -1,0 +1,12 @@
+ETCDCTL_API=3
+ETCDCTL_COMMAND_TIMEOUT=600
+ETCDCTL_ENDPOINTS="<%= Array(scope['etcd::advertise_client_urls']).join(',') %>"
+<% unless [nil, :undefined, :undef, ''].include?(scope['etcd::trusted_ca_file']) -%>
+ETCDCTL_CACERT="<%= scope['etcd::trusted_ca_file'] %>"
+<% end -%>
+<% unless [nil, :undefined, :undef, ''].include?(scope['etcd::cert_file']) -%>
+ETCDCTL_CERT="<%= scope['etcd::cert_file'] %>"
+<% end -%>
+<% unless [nil, :undefined, :undef, ''].include?(scope['etcd::key_file']) -%>
+ETCDCTL_KEY="<%= scope['etcd::key_file'] %>"
+<% end -%>
