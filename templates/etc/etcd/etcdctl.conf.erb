@@ -1,5 +1,5 @@
 ETCDCTL_API=3
-ETCDCTL_COMMAND_TIMEOUT=600
+ETCDCTL_COMMAND_TIMEOUT=600s
 ETCDCTL_ENDPOINTS="<%= Array(scope['etcd::advertise_client_urls']).join(',') %>"
 <% unless [nil, :undefined, :undef, ''].include?(scope['etcd::trusted_ca_file']) -%>
 ETCDCTL_CACERT="<%= scope['etcd::trusted_ca_file'] %>"
